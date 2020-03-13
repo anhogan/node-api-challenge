@@ -68,12 +68,12 @@ function validateActionId(req, res, next) {
   Actions.get(req.params.id)
     .then(action => {
       if (!action) {
-        res.status(400).json({ message: "Invalid project ID" });
+        res.status(400).json({ message: "Invalid action ID" });
       };
     })
     .catch(error => {
       console.log(error);
-      res.status(500).json({ message: "The post information could not be retrieved" });
+      res.status(500).json({ message: "The action information could not be retrieved" });
     });
 
   next();

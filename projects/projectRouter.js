@@ -128,7 +128,7 @@ function validateProjectId(req, res, next) {
     })
     .catch(error => {
       console.log(error);
-      res.status(500).json({ message: "The post information could not be retrieved" });
+      res.status(500).json({ message: "The project information could not be retrieved" });
     });
 
   next();
