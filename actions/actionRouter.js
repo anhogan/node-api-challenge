@@ -89,6 +89,7 @@ function validateAction(req, res, next) {
   next();
 };
 
+// Still posts description - fix this
 function validateLength(req, res, next) {
   if (req.body.description) {
     const arr = Array.from(req.body.description)
