@@ -97,7 +97,7 @@ router.delete('/:id', validateProjectId, (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ message: "The project could not be deleted" })
-    })
+    });
 });
 
 router.put('/:id', validateProjectId, validateProject, (req, res) => {
@@ -116,7 +116,7 @@ router.put('/:id', validateProjectId, validateProject, (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ message: "The project could not be updated" })
-    })
+    });
 });
 
 function validateProjectId(req, res, next) {
