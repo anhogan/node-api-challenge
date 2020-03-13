@@ -73,7 +73,7 @@ function validateActionId(req, res, next) {
     })
     .catch(error => {
       console.log(error);
-      res.status(500).json({ message: "The action information could not be retrieved" });
+      res.status(500).json({ message: "The action data could not be retrieved" });
     });
 
   next();

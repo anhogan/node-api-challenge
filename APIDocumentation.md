@@ -41,6 +41,11 @@ URL: /api/actions
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The action data could not be retrieved"
+}
+```
 
 ### Get an action by ID
 HTTP Request: GET
@@ -70,6 +75,11 @@ URL: /api/actions/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The action data could not be retrieved"
+}
+```
 
 ### Delete an action
 HTTP Request: DELETE
@@ -108,6 +118,12 @@ URL: /api/actions/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The action data could not be retrieved",
+  "message": "The action could not be deleted"
+}
+```
 
 ### Update an action
 HTTP Request: PUT
@@ -173,6 +189,12 @@ URL: /api/actions/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The action data could not be retrieved",
+  "message": "The action could not be updated"
+}
+```
 
 ## Project Routes
 
@@ -234,7 +256,12 @@ URL: /api/projects
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
-
+```javascript
+{
+  "message": "The project data could not be retrieved",
+  "message": "The project could not be created"
+}
+```
 
 ### Create a project action
 HTTP Request: POST
@@ -300,6 +327,12 @@ URL: /api/projects/:id/actions
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The project data could not be retrieved",
+  "message": "The project could not be created"
+}
+```
 
 ### Get all projects
 HTTP Request: GET
@@ -334,6 +367,11 @@ URL: /api/projects
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The project data could not be retrieved"
+}
+```
 
 ### Get a project by ID
 HTTP Request: GET
@@ -363,6 +401,11 @@ URL: /api/projects/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The project data could not be retrieved"
+}
+```
 
 ### Get project actions by project ID
 HTTP Request: GET
@@ -408,6 +451,11 @@ URL: /api/projects/:id/actions
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The action data could not be retrieved"
+}
+```
 
 ### Delete a project
 HTTP Request: DELETE
@@ -444,6 +492,12 @@ URL: /api/projects/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The project data could not be retrieved",
+  "message": "The project could not be deleted"
+}
+```
 
 ### Update a project
 HTTP Request: PUT
@@ -503,3 +557,9 @@ URL: /api/projects/:id
 
 ##### 500 (Internal Server Error)
 > Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "The project data could not be retrieved",
+  "message": "The project could not be updated"
+}
+```
