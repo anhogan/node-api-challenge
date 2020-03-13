@@ -29,7 +29,7 @@ router.get('/:id', validateActionId, (req, res) => {
 router.delete('/:id', validateActionId, (req, res) => {
   Actions.remove(req.params.id)
     .then(action => {
-      console.log(`Successfully deleted ${action}`);
+      console.log('Successfully deleted action');
       Actions.get()
         .then(actions => {
           res.status(200).json(actions);
@@ -48,7 +48,7 @@ router.delete('/:id', validateActionId, (req, res) => {
 router.put('/:id', validateActionId, validateAction, validateLength, (req, res) => {
   Actions.update(req.params.id, req.body)
     .then(action => {
-      console.log(`Successfully updated ${action}`);
+      console.log('Successfully updated action');
       Actions.get()
         .then(actions => {
           res.status(200).json(actions);
@@ -89,17 +89,15 @@ function validateAction(req, res, next) {
   next();
 };
 
-// Still posts description - fix this
 function validateLength(req, res, next) {
   if (req.body.description) {
     const arr = Array.from(req.body.description);
-    console.log(arr);
     if (arr.length > 128) {
       res.status(400).json({ message: "Description must be less than 128 characters" });
+    } else {
+      next();
     };
   };
-
-  next();
 };
 
 module.exports = router;

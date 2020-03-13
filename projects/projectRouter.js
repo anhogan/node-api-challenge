@@ -11,7 +11,7 @@ router.post('/', validateProject, (req, res) => {
 
   Projects.insert(data)
     .then(project => {
-      console.log(`Successfully created ${project}`);
+      console.log('Successfully created project');
       Projects.get()
         .then(projects => {
           res.status(201).json(projects);
@@ -32,7 +32,7 @@ router.post('/:id/actions', validateProjectId, validateAction, validateLength, (
 
   Actions.insert(data)
     .then(action => {
-      console.log(` Successfully created ${action}`);
+      console.log('Successfully created action');
       Projects.getProjectActions(req.params.id)
         .then(actions => {
           res.status(201).json(actions);
@@ -84,7 +84,7 @@ router.get('/:id/actions', validateProjectId, (req, res) => {
 router.delete('/:id', validateProjectId, (req, res) => {
   Projects.remove(req.params.id)
     .then(project => {
-      console.log(`Successfully deleted ${project}`);
+      console.log('Successfully deleted project');
       Projects.get()
         .then(projects => {
           res.status(200).json(projects);
@@ -103,7 +103,7 @@ router.delete('/:id', validateProjectId, (req, res) => {
 router.put('/:id', validateProjectId, validateProject, (req, res) => {
   Projects.update(req.params.id, req.body)
     .then(project => {
-      console.log(`Successfully updated ${project}`);
+      console.log('Successfully updated project');
       Projects.get()
         .then(projects => {
           res.status(200).json(projects);
@@ -122,7 +122,6 @@ router.put('/:id', validateProjectId, validateProject, (req, res) => {
 function validateProjectId(req, res, next) {
   Projects.get(req.params.id)
     .then(project => {
-      console.log(project);
       if (!project) {
         res.status(400).json({ message: "Invalid project ID" });
       } else {
@@ -155,16 +154,15 @@ function validateAction(req, res, next) {
   next();
 };
 
-// Still posts description to action - fix this
 function validateLength(req, res, next) {
   if (req.body.description) {
     const arr = Array.from(req.body.description)
     if (arr.length > 128) {
       res.status(400).json({ message: "Description must be less than 128 characters" });
+    } else {
+      next();
     };
   };
-
-  next();
 };
 
 module.exports = router;
