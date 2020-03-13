@@ -10,7 +10,7 @@ router.post('/', validateProject, (req, res) => {
 
 });
 
-router.post('/:id/actions', validateProjectId, validateAction, (req, res) => {
+router.post('/:id/actions', validateProjectId, validateAction, validateLength, (req, res) => {
 
 });
 
@@ -68,5 +68,16 @@ function validateAction(req, res, next) {
 
   next();
 };
+
+function validateLength(req, res, next) {
+  if (req.body.description) {
+    const arr = Array.from(req.body.description)
+    if (arr.length > 128) {
+      res.status(400).json({ message: "Description must be less than 128 characters" });
+    };
+  };
+
+  next();
+}
 
 module.exports = router;
