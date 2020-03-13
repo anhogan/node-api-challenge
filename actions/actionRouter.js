@@ -92,7 +92,8 @@ function validateAction(req, res, next) {
 // Still posts description - fix this
 function validateLength(req, res, next) {
   if (req.body.description) {
-    const arr = Array.from(req.body.description)
+    const arr = Array.from(req.body.description);
+    console.log(arr);
     if (arr.length > 128) {
       res.status(400).json({ message: "Description must be less than 128 characters" });
     };

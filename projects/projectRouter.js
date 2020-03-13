@@ -27,11 +27,8 @@ router.post('/', validateProject, (req, res) => {
     });
 });
 
-// Not validating project id
 router.post('/:id/actions', validateProjectId, validateAction, validateLength, (req, res) => {
-  console.log(`Validating project id ... ${validateProjectId}`);
   const data = { ...req.body, project_id: parseInt(req.params.id), completed: false };
-  console.log(data);
 
   Actions.insert(data)
     .then(action => {
@@ -84,21 +81,18 @@ router.get('/:id/actions', validateProjectId, (req, res) => {
     });
 });
 
-// Not working
 router.delete('/:id', validateProjectId, (req, res) => {
   Projects.remove(req.params.id)
-    .then(count => {
-      if (count > 0) {
-        console.log('Successfully deleted project');
-        Projects.get()
-          .then(projects => {
-            res.status(200).json(projects);
-          })
-          .catch(error => {
-            console.log(error);
-            res.status(500).json({ message: "The project data could not be retrieved" });
-          });
-      }
+    .then(project => {
+      console.log(`Successfully deleted ${project}`);
+      Projects.get()
+        .then(projects => {
+          res.status(200).json(projects);
+        })
+        .catch(error => {
+          console.log(error);
+          res.status(500).json({ message: "The project data could not be retrieved" });
+        });
     })
     .catch(error => {
       console.log(error);
@@ -131,14 +125,14 @@ function validateProjectId(req, res, next) {
       console.log(project);
       if (!project) {
         res.status(400).json({ message: "Invalid project ID" });
+      } else {
+        next();
       };
     })
     .catch(error => {
       console.log(error);
       res.status(500).json({ message: "The project information could not be retrieved" });
     });
-
-  next();
 };
 
 function validateProject(req, res, next) {
