@@ -45,7 +45,7 @@ router.delete('/:id', validateActionId, (req, res) => {
     });
 });
 
-router.put('/:id', validateActionId, (req, res) => {
+router.put('/:id', validateActionId, validateAction, validateLength, (req, res) => {
   Actions.update(req.params.id, req.body)
     .then(action => {
       console.log(`Successfully updated ${action}`);
@@ -75,6 +75,27 @@ function validateActionId(req, res, next) {
       console.log(error);
       res.status(500).json({ message: "The action information could not be retrieved" });
     });
+
+  next();
+};
+
+function validateAction(req, res, next) {
+  if (Object.keys(req.body).length === 0) {
+    res.status(400).json({ message: "Missing action data" });
+  } else if (!req.body.notes || !req.body.description) {
+    res.status(400).json({ message: "Actions require a description and notes to be created" });
+  };
+
+  next();
+};
+
+function validateLength(req, res, next) {
+  if (req.body.description) {
+    const arr = Array.from(req.body.description)
+    if (arr.length > 128) {
+      res.status(400).json({ message: "Description must be less than 128 characters" });
+    };
+  };
 
   next();
 };

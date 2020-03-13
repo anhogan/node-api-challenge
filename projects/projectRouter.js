@@ -163,6 +163,6 @@ function validateLength(req, res, next) {
   };
 
   next();
-}
+};
 
 module.exports = router;
