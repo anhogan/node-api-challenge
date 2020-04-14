@@ -101,22 +101,28 @@ router.delete('/:id', validateProjectId, (req, res) => {
 });
 
 router.put('/:id', validateProjectId, validateProject, (req, res) => {
-  Projects.update(req.params.id, req.body)
-    .then(project => {
-      console.log('Successfully updated project');
-      Projects.get()
-        .then(projects => {
-          res.status(200).json(projects);
-        })
-        .catch(error => {
-          console.log(error);
-          res.status(500).json({ message: "The project data could not be retrieved" });
-        });
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ message: "The project could not be updated" })
-    });
+  const project = { ...req.body, description: req.project.description ? req.project.description : req.body.description, notes: req.project.name ? req.project.name : req.body.name };
+  
+  // if (!req.project.name || !req.project.description) {
+  //   res.status(400).json({ message: "Projects require a name and description to be created" });
+  // } else {
+    Projects.update(req.params.id, req.body)
+      .then(project => {
+        console.log('Successfully updated project');
+        Projects.get()
+          .then(projects => {
+            res.status(200).json(projects);
+          })
+          .catch(error => {
+            console.log(error);
+            res.status(500).json({ message: "The project data could not be retrieved" });
+          });
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ message: "The project could not be updated" })
+      });
+  // }
 });
 
 function validateProjectId(req, res, next) {
