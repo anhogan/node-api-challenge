@@ -40,13 +40,25 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Middleware: built in functions that reduce the amount of code needed to create a server and run different operations. Specifically, invoking express to set up a server and using the JSON parsing framework to return the correct objects.
+
+Routing: this allows us to specify which endpoint we want to make and HTTP method to so the correct function is executed 
+
 - [ ] Describe Middleware?
+
+Middleware is functions that get executed based on the order they are presented in the code. They can send back certain data based on the request, they can change the request / response, or they can simply log data - it can be built in, installed, or created.
 
 - [ ] Describe a Resource?
 
+Everything is a resource - each one has a unique URI and can be managed with various HTTP methods. What is sent back to the API / server depends on how the called route function is set up to handle the information.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API can return a status code indicating that the request went through (200 - OK) or that it was created (201 - Created). It can also return the resource data, such as an array, an object, etc. to show that the method was invoked successfully.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition the application into sub-applications with routing. This allows us to create separate files for each part of the application, store the endpoints and their functions in those files, then import them into the main server. From the main server we can set up a base endpoint for that specific route that any endpoints would be chained off of.
 
 ## Minimum Viable Product
 
